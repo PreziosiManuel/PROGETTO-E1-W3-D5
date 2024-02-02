@@ -179,6 +179,18 @@ console.log("Sono trascorsi" + " " + daysElapsed + " " + "giorni dalla mia data 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
 */
+function isTodayMyBirthday() {
+  const currentDate = new Date();
+  const currentDay = currentDate.getDay();
+  const currentMonth = currentDate.getMonth() + 1;
+  // const currentDay = 18;
+  // const currentMonth = 8;
+
+  const myBirthdayDay = 18;
+  const myBirthdayMonth = 8;
+  return currentDay === myBirthdayDay && currentMonth === myBirthdayMonth;
+}
+console.log(isTodayMyBirthday());
 
 // Arrays & Oggetti
 
@@ -188,10 +200,32 @@ console.log("Sono trascorsi" + " " + daysElapsed + " " + "giorni dalla mia data 
   Scrivi una funzione chiamata "deleteProp" che riceve un oggetto e una stringa come parametri; deve ritornare l'oggetto fornito dopo aver eliminato
   in esso la proprietà chiamata come la stringa passata come secondo parametro.
 */
-
+function deleteProp(obj, str) {
+  if (obj.hasOwnProperty(str)) {
+    delete obj[str];
+  }
+  return obj;
+}
+const myObj = {
+  name: "Manuel",
+  surname: "Preziosi",
+  age: 25,
+};
+console.log(deleteProp(myObj, "surname"));
 /* ESERCIZIO 12
   Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
 */
+
+function newestMovie(movies) {
+  if (movies.length === 0) {
+    return undefined;
+  }
+  movies.sort((a, b) => parseInt(b.Year, 10) - parseInt(a.Year, 10));
+  return movies[0];
+}
+
+const latestMovie = newestMovie(movies);
+console.log("Il film più recente è:", latestMovie);
 
 /* ESERCIZIO 13
   Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
@@ -200,6 +234,13 @@ console.log("Sono trascorsi" + " " + daysElapsed + " " + "giorni dalla mia data 
 /* ESERCIZIO 14
   Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
 */
+function onlyTheYears(moviesArray) {
+  // const moviesYears = [];
+  // moviesYears.push(movies[i].years);
+  // return movieYears;
+  const yearsArray = moviesArray.map((movie) => movie.Year);
+  return yearsArray;
+}
 
 /* ESERCIZIO 15
   Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
